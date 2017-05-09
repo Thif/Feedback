@@ -1,1 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+    
+    h4,h5 {
+    display: inline;
+}
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
 
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 250px;
+    margin: 0;
+    padding: 1em;
+}
+
+
+
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
+
+<title>TEX Customer Feedback</title>
+
+</head>
+<body>
+
+<div class="container">
+
+<header>
+   <h1>Customer Feedback</h1>
+</header>
+<nav>
+    <p>Use a Scale from 1 to 5 where:<br>
+    1: Delivery is well below expectations<br>
+    2: Delivery has some gaps<br>
+    3: Delivery is satisfactory<br>
+    4: Delivery is good<br>
+    5: Delivery is well above expectations<br>
+    TE: Too early to evaluate<br></p>
+    
+</nav>
+ 
+<article>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+            {% if message == "Record successfully added" %}
+            <div class="alert alert-{{ category }} alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ message }}</div>
+            {% else %}
+            <div class="alert alert-{{ category }} alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ message }}</div>
+            {% endif %}
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+       
+        
+        <form action = "http://localhost:5000/" method = post>
+         <fieldset>
+            
+            {{ form.hidden_tag() }}
+
+            <div style = font-size:20px; font-weight:bold; margin-left:150px;>
+               <h4>Service </h4>&nbsp;{{ form.project }}<br><br>
+               <h4>Supplier</h4>&nbsp;{{ form.supplier }}<br>
+               <br>
+                <h4>Customer/Supplier</h4><br>
+               <h5>Communication and collaboration during the planning and execution of the special technical service</h5>&nbsp;{{ form.communication }}<br>
+               <h5>Will you recommend our services to others on the basis of this commission? (1 "No", 5 Enthusiastic "Yes")<h5>&nbsp;{{ form.recommendation }}<br>
+               <br>
+                <h4>Product/Service</h4><br>
+                <h5>Our ability to plan and execute the above service</h5>&nbsp;{{ form.plan }}<br>
+               <h5>The level of our technical expertise</h5>&nbsp;{{ form.expertise }}<br>
+               <h5>The quality of our result/product</h5>&nbsp;{{ form.quality }}<br>
+               <h5>Our ability to meet deadlines</h5>&nbsp;{{ form.deadline }}<br>
+               <br>
+                <h4>Overall Evaluation</h4>&nbsp;{{ form.overall }}<br>
+               <br>
+               <h4>Feedback</h4><br>
+               {{ form.feedback (cols="100", rows="2") }}<br>
+               
+               <br>
+                
+               
+               <h4>Email</h4>&nbsp;{{ form.email }}
+               <br>
+                <br>
+
+               {{ form.submit }}
+            </div>
+            
+         </fieldset>
+      </form>
+        
+</article>
+
+<footer>Copyright Thibaut Forest (thif@statoil.com)</footer>
+
+</div>
+
+</body>
+</html>
