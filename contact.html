@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    margin-left: 170px;
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+   <h1>Customer Feedback</h1>
+</header>
+  
+<article>
+  <h1>Welcome ! Please Enter your name and feedback:</h1>
+
+        <form action = "http://localhost:5000/contact" method = post>
+         <fieldset>
+            <legend>Contact Form</legend>
+            {{ form.hidden_tag() }}
+            
+            <div style = font-size:20px; font-weight:bold; margin-left:150px;>
+               {{ form.name.label }}<br>
+               {{ form.name }}
+               <br>
+               
+               {{ form.Gender.label }} {{ form.Gender }}
+               {{ form.Address.label }}<br>
+               {{ form.Address }}
+               <br>
+               
+               {{ form.email.label }}<br>
+               {{ form.email }}
+               <br>
+               
+               {{ form.Age.label }}<br>
+               {{ form.Age }}
+               <br>
+               
+               {{ form.language.label }}<br>
+               {{ form.language }}
+               <br>
+               {{ form.submit }}
+            </div>
+            
+         </fieldset>
+      </form>
+        
+</article>
+
+<footer>Copyright Thibaut Forest (thif@statoil.com)</footer>
+
+</div>
+
+</body>
+</html>
